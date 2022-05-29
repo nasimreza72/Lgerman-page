@@ -15,7 +15,7 @@ export default function Login(props) {
       body: JSON.stringify({ username, password }),
     };
 
-    fetch("http://localhost:3005/login", config)
+    fetch("http://35.195.162.149:3005/login", config)
       .then((result) => {
         console.log(result.ok);
         if (result.ok) {

@@ -7,7 +7,7 @@ export default function ListedWord() {
   const [germanHideList, setGermanHideList] = useState(true);
 
   function getAllEnglishWords() {
-    fetch(`http://localhost:3005/toEnglish/`)
+    fetch(`http://35.195.162.149:3005/toEnglish/`)
       .then((response) => response.json())
       .then((result) => {
         const finalList = result.map((w) => w.word[0].word);
@@ -18,7 +18,7 @@ export default function ListedWord() {
   }
 
   function getAllGermanWords() {
-    fetch(`http://localhost:3005/toGerman/`)
+    fetch(`http://35.195.162.149:3005/toGerman/`)
       .then((response) => response.json())
       .then((result) => {
         const finalList = result.map((w) => w.german_word[0].l1_text);

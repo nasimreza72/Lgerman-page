@@ -15,7 +15,7 @@ export default function Registration() {
       body: JSON.stringify({ username, password }),
     };
 
-    fetch("http://localhost:3005/register", config)
+    fetch("http://35.195.162.149:3005/register", config)
     .then((response) => {
       response.json();
       console.log(response.ok);
