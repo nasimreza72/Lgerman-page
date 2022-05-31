@@ -7,18 +7,21 @@ export default function ListedWord() {
   const [germanHideList, setGermanHideList] = useState(true);
 
   function getAllEnglishWords() {
-    fetch(`http://35.195.162.149:3005/toEnglish/`)
+    fetch(`http://34.76.19.123:3005/toEnglish/`)
       .then((response) => response.json())
       .then((result) => {
-        const finalList = result.map((w) => w.word[0].word);
-        setWordsList(finalList);
-        console.log("finalList the list of word ----->", finalList);
+        // const finalList = result.map((w) => w.word[0].word);
+        // setWordsList(finalList);
+
+        setWordsList(result)
+
+        // console.log("finalList the list of word ----->", finalList);
       });
     setHideList(true);
   }
 
   function getAllGermanWords() {
-    fetch(`http://35.195.162.149:3005/toGerman/`)
+    fetch(`http://34.76.19.123:3005/toGerman/`)
       .then((response) => response.json())
       .then((result) => {
         const finalList = result.map((w) => w.german_word[0].l1_text);
@@ -27,6 +30,15 @@ export default function ListedWord() {
       });
     setGermanHideList(true);
   }
+
+  function deleteMessage(message) {
+    const headers = { Authorization: `Bearer ${props.token}` }
+    const url = "http://localhost:3333/api/v1/messages/"+message._id
+    axios.delete(url, { headers })
+        .then(res => setCounter(Math.random()))
+        .catch(error => alert(error.response?.data?.error || "Unknown error"))
+}
+
 
   return (
     <div id="listedWord">
@@ -40,7 +52,7 @@ export default function ListedWord() {
           <ol className="wordsList">
             {wordsList.map((item) => (
               <li>
-                {item} <button>x</button>
+                {item.word[0].word} <button onClick={e => deleteMessage(item)}>x</button>
               </li>
             ))}
           </ol>
@@ -55,7 +67,7 @@ export default function ListedWord() {
         {germanHideList && (
           <ol className="wordsList">
             {germanWordsList.map((item) => (
-              <li>
+              <li key={item._id}>
                 {item} <button>x</button>
               </li>
             ))}

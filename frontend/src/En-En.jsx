@@ -22,7 +22,7 @@ export default function Translate() {
 
     console.log(newWord);
 
-    fetch(`http://35.195.162.149:3005/toEnglish/${newWord}`)
+    fetch(`http://34.76.19.123:3005/toEnglish/${newWord}`)
       .then((response) => response.json())
       .then((result) => {
         if (result.error) {
