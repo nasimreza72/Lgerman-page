@@ -4,7 +4,6 @@ import logo1 from "./logo1.png";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Routes, Route } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
 import Cases from "./Cases";
 import Article from "./Article";
 import Translate from "./En-En";
@@ -12,14 +11,25 @@ import ListedWord from "./ListedWord.jsx";
 import TranslateToGerman from "./De-En";
 import Home from "./Home";
 import Login from "./Login";
+import { useState, useEffect } from "react";
+
+const tokenFromStorage = localStorage.getItem("token");
+const tokenDefault = tokenFromStorage ? tokenFromStorage : null;
 
 export default function App() {
-  const [login, setLogin] = useState(false);
-  console.log(login);
+  const [token, setToken] = useState(tokenDefault);
+
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem("token", token);
+    } else {
+      localStorage.removeItem("token");
+    }
+  }, [token]);
 
   return (
     <div className="App">
-      {login ? (
+      {token ? (
         <div className="navi">
           <img className="background-logo" src={logo} alt="" />
           <Navbar className="navigation" expand="md" color="warning">
@@ -46,7 +56,9 @@ export default function App() {
                     En-En
                   </NavLink>
                   <NavLink to="/toGerman">De-En</NavLink>
-                  <NavLink to="/listed-word" element={<ListedWord />} >Your Vocabulary</NavLink>
+                  <NavLink to="/listed-word" element={<ListedWord />}>
+                    Your Vocabulary
+                  </NavLink>
                 </Nav>
               </Navbar.Collapse>
             </Container>
@@ -54,10 +66,7 @@ export default function App() {
 
           <div className="router-path">
             <Routes>
-              <Route
-                path="/"
-                element={<Home login={login} setLogin={setLogin} />}
-              />
+              <Route path="/" element={<Home />} />
               <Route path="/article" element={<Article />} />
               <Route path="/cases" element={<Cases />} />
               <Route path="/listed-word" element={<ListedWord />} />
@@ -65,11 +74,17 @@ export default function App() {
               <Route path="toGerman" element={<TranslateToGerman />} />
             </Routes>
           </div>
-        <button id="logout" onClick={() => setLogin(false)}>logout</button>
-
+          <button
+            id="logout"
+            onClick={() => {
+              setToken(null);
+            }}
+          >
+            logout
+          </button>
         </div>
       ) : (
-        <Login login={login} setLogin={setLogin} />
+        <Login setToken={setToken} />
       )}
     </div>
   );

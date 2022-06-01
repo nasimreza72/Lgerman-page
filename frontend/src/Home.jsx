@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function Home(props) {
+export default function Home() {
   return (
     <div id="home">
       <h1>
@@ -74,7 +74,6 @@ export default function Home(props) {
           <li>improve your English vocabulary </li>
           <li>keep track of what you have learnt </li>
         </ul>
-        {/* <button onClick={() => props.setLogin(false)}>logout</button> */}
       </div>
     </div>
   );

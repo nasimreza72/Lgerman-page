@@ -15,18 +15,19 @@ export default function Login(props) {
       body: JSON.stringify({ username, password }),
     };
 
-    fetch("http://34.76.19.123:3005/login", config)
+    fetch("http://localhost:3005/login", config)
       .then((result) => {
-        console.log(result.ok);
         if (result.ok) {
           console.log(result);
-          props.setLogin(true);
         } else {
           alert("Invalid password!!");
         }
         return result.json();
       })
-      .then((response) => console.log("res--->", response));
+      .then((response) => {
+        props.setToken(response.token)
+        console.log("res--->", response)
+      });
   }
 
   return (
