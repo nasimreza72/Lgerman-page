@@ -9,11 +9,16 @@ import Word from "./models/EnglishWords.js";
 import GermanWords from "./models/GermanWords.js";
 import { hash, compareHashes } from "./lib/crypto.js";
 
+
+
+
 dotenv.config();
 dataBase.connect();
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+
 
 /////// API FOR ENGLISH TRANSLATION
 
