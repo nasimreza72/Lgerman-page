@@ -22,6 +22,12 @@ app.use(express.json());
 
 /////// API FOR ENGLISH TRANSLATION
 
+
+
+let count = 0
+console.log(count)
+
+
 app.get("/toEnglish/:word", async (req, res) => {
   const selectedWord = await Word.find();
 
@@ -33,13 +39,23 @@ app.get("/toEnglish/:word", async (req, res) => {
     res.send(existedWord.word[0]);
     console.log("coming From DB ------>");
   } else {
-    axios(`https://api.dictionaryapi.dev/api/v2/entries/en/${req.params.word}`)
+
+    if(count<3){
+
+      axios(`https://api.dictionaryapi.dev/api/v2/entries/en/${req.params.word}`)
       .then((result) => {
         console.log("coming From API ------>");
         const singleWord = {
           word: result.data[0],
         };
         Word.create(singleWord);
+        
+        count++
+
+  console.log(count)
+
+
+
         res.send(result.data[0]);
       })
       .catch((err) => {
@@ -52,6 +68,9 @@ app.get("/toEnglish/:word", async (req, res) => {
           error: err,
         });
       });
+
+    }
+
   }
 });
 

@@ -22,7 +22,7 @@ export default function Translate() {
 
     console.log(newWord);
 
-    fetch(`http://34.76.19.123:3005/toEnglish/${newWord}`)
+    fetch(process.env.REACT_APP_URL+`/toEnglish/${newWord}`)
       .then((response) => response.json())
       .then((result) => {
         if (result.error) {

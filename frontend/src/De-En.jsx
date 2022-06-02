@@ -30,7 +30,7 @@ export default function TranslateToGerman() {
      .replaceAll("ö", "o") 
      .replaceAll("ü", "u") 
 
-    fetch(`http://34.76.19.123:3005/toGerman/${newWord}`)
+    fetch(process.env.REACT_APP_URL+`/toGerman/${newWord}`)
       .then((response) => response.json())
       .then((result) => {
         if (result.error) {

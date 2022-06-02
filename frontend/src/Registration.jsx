@@ -15,7 +15,7 @@ export default function Registration() {
       body: JSON.stringify({ username, password }),
     };
 
-    fetch("http://34.76.19.123:3005/register", config)
+    fetch(process.env.REACT_APP_URL+"/register", config)
     .then((response) => {
       response.json();
       console.log(response.ok);

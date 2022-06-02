@@ -15,7 +15,7 @@ export default function Login(props) {
       body: JSON.stringify({ username, password }),
     };
 
-    fetch("http://localhost:3005/login", config)
+    fetch(process.env.REACT_APP_URL+"/login", config)
       .then((result) => {
         if (result.ok) {
           console.log(result);

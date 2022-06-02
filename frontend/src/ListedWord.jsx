@@ -7,7 +7,8 @@ export default function ListedWord() {
   const [germanHideList, setGermanHideList] = useState(true);
 
   function getAllEnglishWords() {
-    fetch(`http://34.76.19.123:3005/toEnglish/`)
+    fetch(process.env.REACT_APP_URL+"/toEnglish")
+
       .then((response) => response.json())
       .then((result) => {
         // const finalList = result.map((w) => w.word[0].word);
@@ -21,7 +22,7 @@ export default function ListedWord() {
   }
 
   function getAllGermanWords() {
-    fetch(`http://34.76.19.123:3005/toGerman/`)
+    fetch(process.env.REACT_APP_URL+"/toGerman")
       .then((response) => response.json())
       .then((result) => {
         const finalList = result.map((w) => w.german_word[0].l1_text);
@@ -31,13 +32,13 @@ export default function ListedWord() {
     setGermanHideList(true);
   }
 
-  function deleteMessage(message) {
-    const headers = { Authorization: `Bearer ${props.token}` }
-    const url = "http://localhost:3333/api/v1/messages/"+message._id
-    axios.delete(url, { headers })
-        .then(res => setCounter(Math.random()))
-        .catch(error => alert(error.response?.data?.error || "Unknown error"))
-}
+//   function deleteMessage(message) {
+//     const headers = { Authorization: `Bearer ${props.token}` }
+//     const url = process.env.REACT_APP_URL+message._id
+//     axios.delete(url, { headers })
+//         .then(res => setCounter(Math.random()))
+//         .catch(error => alert(error.response?.data?.error || "Unknown error"))
+// }
 
 
   return (
