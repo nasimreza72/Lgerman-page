@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import jwt from "jsonwebtoken";
-import axios from "axios"
+import axios from "axios";
 import dotenv from "dotenv";
 import * as dataBase from "./lib/database.js";
 import { User } from "./models/User.js";
@@ -9,24 +9,13 @@ import Word from "./models/EnglishWords.js";
 import GermanWords from "./models/GermanWords.js";
 import { hash, compareHashes } from "./lib/crypto.js";
 
-
-
-
 dotenv.config();
 dataBase.connect();
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-
-
 /////// API FOR ENGLISH TRANSLATION
-
-
-
-let count = 0
-console.log(count)
-
 
 app.get("/toEnglish/:word", async (req, res) => {
   const selectedWord = await Word.find();
@@ -39,23 +28,13 @@ app.get("/toEnglish/:word", async (req, res) => {
     res.send(existedWord.word[0]);
     console.log("coming From DB ------>");
   } else {
-
-    if(count<3){
-
-      axios(`https://api.dictionaryapi.dev/api/v2/entries/en/${req.params.word}`)
+    axios(`https://api.dictionaryapi.dev/api/v2/entries/en/${req.params.word}`)
       .then((result) => {
         console.log("coming From API ------>");
         const singleWord = {
           word: result.data[0],
         };
         Word.create(singleWord);
-        
-        count++
-
-  console.log(count)
-
-
-
         res.send(result.data[0]);
       })
       .catch((err) => {
@@ -68,30 +47,27 @@ app.get("/toEnglish/:word", async (req, res) => {
           error: err,
         });
       });
-
-    }
-
   }
 });
-
 
 ///////  Get word list from English DB
 
 app.get("/toEnglish", async (req, res) => {
   const wordList = await Word.find();
-  res.send(wordList)
-
-})
+  res.send(wordList);
+});
 
 ///////  Get word list from German DB
 
 app.get("/toGerman", async (req, res) => {
   const wordList = await GermanWords.find();
-  res.send(wordList)
-
-})
+  res.send(wordList);
+});
 
 //////// API FOR GERMAN TRANSLATION
+
+let count = 0;
+console.log(count);
 
 app.get("/toGerman/:word", async (req, res) => {
   console.log(req.url);
@@ -100,52 +76,54 @@ app.get("/toGerman/:word", async (req, res) => {
 
   const existedWord = selectedWord.find(
     (item) =>
-      item.query &&
-      item.query.toLowerCase() == req.params.word.toLowerCase()
+      item.query && item.query.toLowerCase() == req.params.word.toLowerCase()
   );
 
   if (existedWord) {
     console.log("coming From DB ------>");
     res.send(existedWord.german_word[0]);
   } else {
-    axios(
-      `https://petapro-translate-v1.p.rapidapi.com/?query=${req.params.word}&langpair=de-en`,
-      {
-        method: "GET",
-        headers: {
-          "x-rapidapi-host": "petapro-translate-v1.p.rapidapi.com",
-          "x-rapidapi-key": process.env.RAPID_API_KEY,
-        },
-      }
-    )
-      .then((result) => {
-        if (result.data[0]) {
-          console.log("coming From API ------>");
-          const foundWord = {
-            german_word: result.data[0],
-            query: req.params.word,
-          };
-          GermanWords.create(foundWord);
-          res.send(result.data[0]);
-        } else {
-          res.status(400);
+    if (count < 1000) {
+      axios(
+        `https://petapro-translate-v1.p.rapidapi.com/?query=${req.params.word}&langpair=de-en`,
+        {
+          method: "GET",
+          headers: {
+            "x-rapidapi-host": "petapro-translate-v1.p.rapidapi.com",
+            "x-rapidapi-key": process.env.RAPID_API_KEY,
+          },
+        }
+      )
+        .then((result) => {
+          count++;
+          console.log(count);
+          if (result.data[0]) {
+            console.log("coming From API ------>");
+            const foundWord = {
+              german_word: result.data[0],
+              query: req.params.word,
+            };
+            GermanWords.create(foundWord);
+            res.send(result.data[0]);
+          } else {
+            res.status(400);
+            res.send({
+              l1_text: req.params.word,
+              error: "Word not found",
+            });
+          }
+        })
+        .catch((err) => {
+          Word.create({
+            l1_text: req.params.word,
+            error: err,
+          });
           res.send({
             l1_text: req.params.word,
-            error: "Word not found",
+            error: err,
           });
-        }
-      })
-
-      .catch((err) => {
-        Word.create({
-          l1_text: req.params.word,
-          error: err,
         });
-        res.send({
-          l1_text: req.params.word,
-          error: err,
-        });
-      });
+    }
   }
 });
 
@@ -214,7 +192,7 @@ app.post("/login", async (req, res) => {
       expiresIn: "300000m",
     };
     const token = jwt.sign(payload, process.env.SECRET, options);
-    res.send({token});
+    res.send({ token });
   } catch (e) {
     console.log(e);
     res.status(401).send({
