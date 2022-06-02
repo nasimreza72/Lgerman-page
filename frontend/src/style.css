@@ -2,9 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  letter-spacing: 0.5px;
-  font-size: large;
-  font-weight: normal;
 }
 
 .App {
@@ -381,6 +378,7 @@ textarea,
 /* ----- Media query ----- */
 
 @media screen and (min-width: 1400px) {
+
   .background-logo {
     position: fixed;
     z-index: -1;
@@ -390,4 +388,20 @@ textarea,
     opacity: 0.25;
     box-shadow: none;
   }
+}
+
+@media screen and (max-width: 768px) {
+
+*{
+  font-size: small;
+}
+textarea,
+.textDiv,
+.instructionForUser {
+  padding: 7.5px 5px;
+}
+#home{
+  padding: 20px;
+}
+
 }
