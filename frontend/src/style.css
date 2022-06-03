@@ -77,19 +77,23 @@ h6 {
   scroll-behavior: smooth;
 }
 
-.subLogin{
+.subLogin {
   background-color: rgba(100, 100, 100, 0.753);
   padding: 2rem 3rem;
   border-radius: 20px;
   min-height: 60vh;
   margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.subLogin h1{
+.subLogin h1 {
   margin-bottom: 2rem;
   font-size: xx-large;
 }
 
-.subLogin h3{
+.subLogin h3 {
   font-size: x-large;
 }
 
@@ -101,18 +105,16 @@ h6 {
   height: 50vh;
 }
 
-
-.inputUserName{
+.inputUserName {
   border: none;
   outline: none;
   background-color: #ffffffd2;
   margin-bottom: 10px;
   border-radius: 3px;
   padding: 5px 15px;
-
 }
 
-.inputPassword{
+.inputPassword {
   border: none;
   background-color: #ffffffd2;
   outline: none;
@@ -121,8 +123,7 @@ h6 {
   padding: 5px 15px;
 }
 
-
-.logInText{
+.logInText {
   color: white;
   margin-bottom: 1.5rem;
 }
@@ -131,34 +132,33 @@ h6 {
   padding: 3px 118px;
   border-radius: 3px;
   border: 0.5px solid gray;
-  transition: .5s ease-in-out;
+  transition: 0.5s ease-in-out;
   margin-bottom: 1rem;
   color: white;
   background-color: #3a3a3a8f;
 }
 
-.login:hover{
+.login:hover {
   background-color: rgb(255, 255, 255);
   color: #000000be;
 }
-
 
 .registerMe {
   padding: 3px 95px;
   border-radius: 3px;
   border: 0.5px solid gray;
-  transition: .5s ease-in-out;
+  transition: 0.5s ease-in-out;
   margin-bottom: 1rem;
   color: white;
   background-color: #3a3a3a8f;
 }
 
-.registerMe:hover{
+.registerMe:hover {
   background-color: rgb(255, 255, 255);
   color: #000000be;
 }
 
-.regisNotificationButton{
+.regisNotificationButton {
   border: none;
   background-color: rgb(255, 255, 255);
   color: #000000be;
@@ -166,11 +166,11 @@ h6 {
   border-radius: 5px;
 }
 
-.signUp{
+.signUp {
   padding: 0px 15px;
   border-radius: 3px;
   border: 0.5px solid gray;
-  transition: .5s ease-in-out;
+  transition: 0.5s ease-in-out;
   margin-bottom: 1rem;
   color: white;
   background-color: #3a3a3a8f;
@@ -185,11 +185,11 @@ h6 {
   right: 0;
 }
 
-footer{
+footer {
   color: rgba(0, 0, 0, 0.781);
 }
 
-footer p:last-child{
+footer p:last-child {
   font-size: small;
 }
 
@@ -226,7 +226,7 @@ footer p:last-child{
 
 /* ------- App -------*/
 
-#logout{
+#logout {
   position: fixed;
   padding: 5px 25px;
   background-color: #0000009f;
@@ -235,27 +235,26 @@ footer p:last-child{
   bottom: 25px;
   right: 25px;
   border-radius: 10px;
-  transition: .5s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 
-#logout:hover{
+#logout:hover {
   color: rgb(248, 192, 36);
   background-color: #000000;
 }
 
 /*------ Home ------ */
 
-#home{
+#home {
   width: 100vw;
   min-height: 75vh;
-  color: rgb(68, 68, 68)
+  color: rgb(68, 68, 68);
 }
 
-#home h4{
+#home h4 {
   color: rgb(68, 68, 68);
   margin: 1rem 0rem;
 }
-
 
 /* --Article --*/
 
@@ -344,8 +343,7 @@ textarea,
   justify-content: center;
 }
 
-
-#listedWord button{
+#listedWord button {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   border-radius: 10px;
   padding: 5px 20px;
@@ -353,27 +351,25 @@ textarea,
   border: none;
   background-color: #1b1b1b;
   color: #ffffff;
-  transition: .2s ease-in-out;
+  transition: 0.2s ease-in-out;
 }
 
-#listedWord button:hover{
-  background-color:  #ffffff;
-  color: #1b1b1b 
+#listedWord button:hover {
+  background-color: #ffffff;
+  color: #1b1b1b;
 }
 
-
-
-.wordsList{
+.wordsList {
   margin-top: 1rem;
 }
 
-.wordsList li{
+.wordsList li {
   width: 150px;
   display: flex;
   justify-content: space-between;
 }
 
-#listedWord ol button{
+#listedWord ol button {
   border-radius: 25%;
   padding: 0px 6px;
   font-size: 12px;
@@ -382,10 +378,10 @@ textarea,
   background-color: #ffffff;
 }
 
-
-.englishListedWords, .germanListedWords {
+.englishListedWords,
+.germanListedWords {
   width: 50%;
-  max-width: 40rem;  
+  max-width: 40rem;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -394,7 +390,6 @@ textarea,
 /* ----- Media query ----- */
 
 @media screen and (min-width: 1400px) {
-
   .background-logo {
     position: fixed;
     z-index: -1;
@@ -407,51 +402,40 @@ textarea,
 }
 
 @media screen and (max-width: 768px) {
+  * {
+    font-size: small;
+  }
+  textarea,
+  .textDiv,
+  .instructionForUser {
+    padding: 7.5px 5px;
+  }
+  #home {
+    padding: 20px;
+  }
 
-*{
-  font-size: small;
-}
-textarea,
-.textDiv,
-.instructionForUser {
-  padding: 7.5px 5px;
-}
-#home{
-  padding: 20px;
-}
+  .login {
+    padding: 2px 98px;
+  }
+  .registerMe {
+    padding: 3px 80px;
+  }
 
-.subLogin{
-  min-height: 60vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+  #listedWord ol button {
+    border-radius: 5px;
+    font-size: 13px;
+    line-height: 0px;
+    color: #ff0207;
+    border: none;
+    background-color: #ffffff;
+  }
 
-.login{
-  padding: 2px 98px;
-}
-.registerMe {
-  padding: 3px 80px;
-}
-
-#listedWord ol button{
-  border-radius: 5px;
-  font-size: 13px;
-  line-height: 0px;
-  color: #ff0207;
-  border: none;
-  background-color: #ffffff;
-}
-
-#listedWord button{
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  border-radius: 5px;
-  padding: 2px 5px;
-  /* margin-right: 10px; */
-  border: none;
-  background-color: #161616;
-  color: #ffffff;
-}
-
+  #listedWord button {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    border-radius: 5px;
+    padding: 2px 5px;
+    border: none;
+    background-color: #161616;
+    color: #ffffff;
+  }
 }
