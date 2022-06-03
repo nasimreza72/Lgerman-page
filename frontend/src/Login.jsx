@@ -35,10 +35,10 @@ export default function Login(props) {
       <div className="subLogin">
         <h1>
           Welcome to the{" "}
-          <span style={{ fontSize: "50px", fontWeight: 400 }}>L</span>
+          <span style={{ fontSize: "35px", fontWeight: 400 }}>L</span>
           <span
             style={{
-              fontSize: "45px",
+              fontSize: "30px",
               fontStyle: "italic",
               fontWeight: 500,
               color: "#352f44",
@@ -49,7 +49,7 @@ export default function Login(props) {
           <span
             style={{
               color: "#f95959",
-              fontSize: 45,
+              fontSize: 30,
               fontWeight: 500,
               fontStyle: "italic",
             }}
@@ -58,7 +58,7 @@ export default function Login(props) {
           <span
             style={{
               color: "#f9b248",
-              fontSize: 45,
+              fontSize: 30,
               fontWeight: 500,
               fontStyle: "italic",
             }}

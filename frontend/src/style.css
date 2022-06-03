@@ -86,6 +86,11 @@ h6 {
 }
 .subLogin h1{
   margin-bottom: 2rem;
+  font-size: xx-large;
+}
+
+.subLogin h3{
+  font-size: x-large;
 }
 
 #home {
@@ -123,7 +128,7 @@ h6 {
 }
 
 .login {
-  padding: 3px 128px;
+  padding: 3px 118px;
   border-radius: 3px;
   border: 0.5px solid gray;
   transition: .5s ease-in-out;
@@ -139,7 +144,7 @@ h6 {
 
 
 .registerMe {
-  padding: 3px 100px;
+  padding: 3px 95px;
   border-radius: 3px;
   border: 0.5px solid gray;
   transition: .5s ease-in-out;
@@ -162,7 +167,7 @@ h6 {
 }
 
 .signUp{
-  padding: 0px 30px;
+  padding: 0px 15px;
   border-radius: 3px;
   border: 0.5px solid gray;
   transition: .5s ease-in-out;
@@ -346,7 +351,18 @@ textarea,
   border-radius: 10px;
   padding: 5px 20px;
   margin-right: 10px;
+  border: none;
+  background-color: #1b1b1b;
+  color: #ffffff;
+  transition: .2s ease-in-out;
 }
+
+#listedWord button:hover{
+  background-color:  #ffffff;
+  color: #1b1b1b 
+}
+
+
 
 .wordsList{
   margin-top: 1rem;
@@ -359,11 +375,12 @@ textarea,
 }
 
 #listedWord ol button{
-  border-radius: 80%;
-  padding: .5px 5px;
-  font-size: 15px;
-  color: #ba2023;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 3px, rgba(0, 0, 0, 0.23) 0px 1px 3px;
+  border-radius: 25%;
+  padding: 0px 6px;
+  font-size: 12px;
+  color: #e60105;
+  border: none;
+  background-color: #ffffff;
 }
 
 
@@ -394,6 +411,7 @@ textarea,
 
 *{
   font-size: small;
+  overflow: hidden;
 }
 textarea,
 .textDiv,
@@ -402,6 +420,40 @@ textarea,
 }
 #home{
   padding: 20px;
+}
+
+.subLogin{
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login{
+  padding: 2px 98px;
+}
+.registerMe {
+  padding: 3px 80px;
+}
+
+#listedWord ol button{
+  border-radius: 5px;
+  font-size: 13px;
+  line-height: 0px;
+  color: #ff0207;
+  border: none;
+  background-color: #ffffff;
+}
+
+#listedWord button{
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  border-radius: 5px;
+  padding: 2px 5px;
+  margin-right: 10px;
+  border: none;
+  background-color: #161616;
+  color: #ffffff;
 }
 
 }

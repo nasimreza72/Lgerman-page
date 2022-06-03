@@ -53,7 +53,7 @@ export default function ListedWord() {
           <ol className="wordsList">
             {wordsList.map((item) => (
               <li>
-                {item.word[0].word} <button onClick={e => deleteMessage(item)}>x</button>
+                {item.word[0].word} <button onClick={e => deleteMessage(item) }>x</button>
               </li>
             ))}
           </ol>

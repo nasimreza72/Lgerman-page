@@ -3,18 +3,18 @@ import { useEffect, useState } from "react";
 export default function Home() {
   return (
     <div id="home">
-      <h1>
+      <h2>
         Welcome to the{" "}
-        <span style={{ fontSize: "50px", fontWeight: 400 }}>L</span>
+        <span style={{ fontSize: "40px", fontWeight: 400 }}>L</span>
         <span
-          style={{ fontSize: "45px", fontStyle: "italic", fontWeight: 500 }}
+          style={{ fontSize: "35px", fontStyle: "italic", fontWeight: 500 }}
         >
           ge
         </span>
         <span
           style={{
             color: "red",
-            fontSize: 45,
+            fontSize: 35,
             fontWeight: 500,
             fontStyle: "italic",
           }}
@@ -24,7 +24,7 @@ export default function Home() {
         <span
           style={{
             color: "#f9b248",
-            fontSize: 45,
+            fontSize: 35,
             fontWeight: 500,
             fontStyle: "italic",
           }}
@@ -32,23 +32,23 @@ export default function Home() {
           an
         </span>{" "}
         page
-      </h1>
+      </h2>
 
       <div style={{ margin: "2rem" }} className="mainBelowPart">
-        <h2>Are you struggling with your German?</h2>
+        <h4>Are you struggling with your German?</h4>
 
         <h4>
           {" "}
-          <span style={{ fontSize: "50px", fontWeight: 400 }}>L</span>
+          <span style={{ fontSize: "35px", fontWeight: 400 }}>L</span>
           <span
-            style={{ fontSize: "35px", fontStyle: "italic", fontWeight: 500 }}
+            style={{ fontSize: "25px", fontStyle: "italic", fontWeight: 500 }}
           >
             ge
           </span>
           <span
             style={{
               color: "red",
-              fontSize: 35,
+              fontSize: 25,
               fontWeight: 500,
               fontStyle: "italic",
             }}
@@ -58,7 +58,7 @@ export default function Home() {
           <span
             style={{
               color: "#f9b248",
-              fontSize: 35,
+              fontSize: 25,
               fontWeight: 500,
               fontStyle: "italic",
             }}
