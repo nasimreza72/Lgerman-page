@@ -1,45 +1,40 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-export default function ListedWord() {
+export default function ListedWord(props) {
   const [wordsList, setWordsList] = useState([]);
   const [germanWordsList, setGermanWordsList] = useState([]);
   const [hideList, setHideList] = useState(true);
   const [germanHideList, setGermanHideList] = useState(true);
 
   function getAllEnglishWords() {
-    fetch(process.env.REACT_APP_URL+"/toEnglish")
-
+    fetch(process.env.REACT_APP_URL + "/toEnglish")
       .then((response) => response.json())
       .then((result) => {
-        // const finalList = result.map((w) => w.word[0].word);
-        // setWordsList(finalList);
-
-        setWordsList(result)
-
-        // console.log("finalList the list of word ----->", finalList);
+        setWordsList(result);
       });
     setHideList(true);
   }
 
   function getAllGermanWords() {
-    fetch(process.env.REACT_APP_URL+"/toGerman")
+    fetch(process.env.REACT_APP_URL + "/toGerman")
       .then((response) => response.json())
       .then((result) => {
-        const finalList = result.map((w) => w.german_word[0].l1_text);
-        setGermanWordsList(finalList);
-        console.log("German words list ----->", finalList);
+        setGermanWordsList(result);
       });
     setGermanHideList(true);
   }
 
-//   function deleteMessage(message) {
-//     const headers = { Authorization: `Bearer ${props.token}` }
-//     const url = process.env.REACT_APP_URL+message._id
-//     axios.delete(url, { headers })
-//         .then(res => setCounter(Math.random()))
-//         .catch(error => alert(error.response?.data?.error || "Unknown error"))
-// }
+  function deleteWord(id) {
+    fetch(process.env.REACT_APP_URL + `/deleteWord/${id}`)
+      .then((res) => res.json())
+      .then((result) => setWordsList(result));
+  }
 
+  function deleteGermanWord(id) {
+    fetch(process.env.REACT_APP_URL + `/deleteGermanWord/${id}`)
+      .then((res) => res.json())
+      .then((result) => setGermanWordsList(result));
+  }
 
   return (
     <div id="listedWord">
@@ -53,7 +48,8 @@ export default function ListedWord() {
           <ol className="wordsList">
             {wordsList.map((item) => (
               <li>
-                {item.word[0].word} <button onClick={e => deleteMessage(item) }>x</button>
+                {item.word[0].word}{" "}
+                <button onClick={() => deleteWord(item._id)}>x</button>
               </li>
             ))}
           </ol>
@@ -69,7 +65,8 @@ export default function ListedWord() {
           <ol className="wordsList">
             {germanWordsList.map((item) => (
               <li key={item._id}>
-                {item} <button>x</button>
+                {item.german_word[0].l1_text}{" "}
+                <button onClick={() => deleteGermanWord(item._id)}>x</button>
               </li>
             ))}
           </ol>

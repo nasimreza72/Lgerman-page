@@ -170,6 +170,7 @@ function checkTokenMiddleware(req, res, next) {
 }
 
 // This endpoint returns a fresh token
+
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   try {
@@ -189,7 +190,7 @@ app.post("/login", async (req, res) => {
       userId: user._id,
     };
     const options = {
-      expiresIn: "300000m",
+      expiresIn: "300m",
     };
     const token = jwt.sign(payload, process.env.SECRET, options);
     res.send({ token });
@@ -229,6 +230,22 @@ app.get("/users", checkTokenMiddleware, (req, res) => {
       console.log(e);
       res.status(400).send(e.message);
     });
+});
+
+/////////// DELETE WORD
+
+app.get("/deleteWord/:id", async (req, res) => {
+  await Word.deleteOne({ _id: req.params.id });
+  const newList = await Word.find();
+  res.send(newList);
+});
+
+/////////// DELETE GERMAN WORD
+
+app.get("/deleteGermanWord/:id", async (req, res) => {
+  await GermanWords.deleteOne({ _id: req.params.id });
+  const newGermanWordList = await GermanWords.find()
+  res.send(newGermanWordList);
 });
 
 /////////// LISTENING
