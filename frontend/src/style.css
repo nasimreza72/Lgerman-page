@@ -339,8 +339,7 @@ textarea,
 
 #listedWord {
   width: 100%;
-  /* min-height: 100vh; */
-  margin: 1rem;
+  padding: 1rem;
   display: flex;
   justify-content: center;
 }
@@ -411,7 +410,6 @@ textarea,
 
 *{
   font-size: small;
-  overflow: hidden;
 }
 textarea,
 .textDiv,
@@ -450,7 +448,7 @@ textarea,
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   border-radius: 5px;
   padding: 2px 5px;
-  margin-right: 10px;
+  /* margin-right: 10px; */
   border: none;
   background-color: #161616;
   color: #ffffff;
