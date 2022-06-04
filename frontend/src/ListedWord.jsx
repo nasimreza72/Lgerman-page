@@ -24,14 +24,42 @@ export default function ListedWord(props) {
     setGermanHideList(true);
   }
 
+  // function deleteWord(id) {
+  //   fetch(process.env.REACT_APP_URL + `/deleteWord/${id}`)
+  //     .then((res) => res.json())
+  //     .then((result) => setWordsList(result));
+  // }
+
+  // function deleteGermanWord(id) {
+  //   fetch(process.env.REACT_APP_URL + `/deleteGermanWord/${id}`)
+  //     .then((res) => res.json())
+  //     .then((result) => setGermanWordsList(result));
+  // }
+
   function deleteWord(id) {
-    fetch(process.env.REACT_APP_URL + `/deleteWord/${id}`)
+    let targetedId = {
+      targetedId: id,
+    };
+
+    fetch(process.env.REACT_APP_URL + `/deleteWord`, {
+      method: "DELETE",
+      body: JSON.stringify(targetedId),
+      headers: { "Content-Type": "application/json" },
+    })
       .then((res) => res.json())
       .then((result) => setWordsList(result));
   }
 
   function deleteGermanWord(id) {
-    fetch(process.env.REACT_APP_URL + `/deleteGermanWord/${id}`)
+    let targetedId = {
+      targetedId: id,
+    };
+
+    fetch(process.env.REACT_APP_URL + `/deleteGermanWord`, {
+      method: "DELETE",
+      body: JSON.stringify(targetedId),
+      headers: { "Content-Type": "application/json" },
+    })
       .then((res) => res.json())
       .then((result) => setGermanWordsList(result));
   }

@@ -8,12 +8,25 @@ import { User } from "./models/User.js";
 import Word from "./models/EnglishWords.js";
 import GermanWords from "./models/GermanWords.js";
 import { hash, compareHashes } from "./lib/crypto.js";
+import * as deepl from "deepl-node";
 
 dotenv.config();
 dataBase.connect();
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+//////// Translation using DeepL
+
+app.post("/toTranslate", async (req, res) => {
+  const reqBody = req.body.preTranslatedSentence;
+
+  const authKey = "8a42700f-ef7c-f619-ed85-970e9ffd5237:fx";
+  const translator = new deepl.Translator(authKey);
+
+  const result = await translator.translateText(reqBody, null, "de");
+  res.send({ response: result.text });
+});
 
 /////// API FOR ENGLISH TRANSLATION
 
@@ -234,17 +247,18 @@ app.get("/users", checkTokenMiddleware, (req, res) => {
 
 /////////// DELETE WORD
 
-app.get("/deleteWord/:id", async (req, res) => {
-  await Word.deleteOne({ _id: req.params.id });
+app.delete("/deleteWord", async (req, res) => {
+  console.log(req.body.targetedId);
+  await Word.deleteOne({ _id: req.body.targetedId });
   const newList = await Word.find();
   res.send(newList);
 });
 
 /////////// DELETE GERMAN WORD
 
-app.get("/deleteGermanWord/:id", async (req, res) => {
-  await GermanWords.deleteOne({ _id: req.params.id });
-  const newGermanWordList = await GermanWords.find()
+app.delete("/deleteGermanWord", async (req, res) => {
+  await GermanWords.deleteOne({ _id: req.body.targetedId });
+  const newGermanWordList = await GermanWords.find();
   res.send(newGermanWordList);
 });
 

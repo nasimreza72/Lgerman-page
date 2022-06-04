@@ -1,11 +1,12 @@
 import "./style.css";
-import logo from "./germanLogo.png";
-import logo1 from "./logo1.png";
+import logo from "../src/images/germanLogo.png";
+import logo1 from "../src/images/logo1.png";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Routes, Route } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import Cases from "./Cases";
 import Article from "./Article";
+import Translation from "./Translation";
 import Translate from "./En-En";
 import ListedWord from "./ListedWord.jsx";
 import TranslateToGerman from "./De-En";
@@ -30,16 +31,16 @@ export default function App() {
   return (
     <div className="App">
       {token ? (
-        <div className="navi">
+        <div >
           <img className="background-logo" src={logo} alt="" />
-          <Navbar className="navigation" expand="md" color="warning">
+          <Navbar className="navigation" expand="md">
             <Container fluid>
               <NavLink to="/">
                 <img className="nav-logo" src={logo1} alt="" />
               </NavLink>
               <Navbar.Toggle aria-controls="navbarScroll" />
               <Navbar.Collapse id="navbarScroll">
-                <Nav
+                <Nav aria-controls="navbarScroll"
                   className="p-1 d-flex sub-nav "
                   style={{ maxHeight: "190px" }}
                   navbarScroll
@@ -50,9 +51,8 @@ export default function App() {
                   <NavLink to="/cases" element={<Cases />}>
                     Cases
                   </NavLink>
-                  <NavLink to="/preposition">Preposition</NavLink>
-                  {/* <NavLink to="/main/archive">Verb</NavLink> */}
-                  <NavLink to="/translate" element={<Translate />}>
+                  <NavLink to="/translation" element={<Translation />}>Translation</NavLink>
+                  <NavLink to="/toEnglish" element={<Translate />}>
                     En-En
                   </NavLink>
                   <NavLink to="/toGerman">De-En</NavLink>
@@ -69,8 +69,9 @@ export default function App() {
               <Route path="/" element={<Home />} />
               <Route path="/article" element={<Article />} />
               <Route path="/cases" element={<Cases />} />
+              <Route path="/translation" element={<Translation />} />
               <Route path="/listed-word" element={<ListedWord />} />
-              <Route path="/translate" element={<Translate />} />
+              <Route path="/toEnglish" element={<Translate />} />
               <Route path="toGerman" element={<TranslateToGerman />} />
             </Routes>
           </div>
