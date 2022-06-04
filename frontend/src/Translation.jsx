@@ -12,7 +12,7 @@ export default function Translation() {
           preTranslatedSentence: sentence,
         };
     
-        fetch(process.env.REACT_APP_URL + `/toTranslate`, {
+        fetch(process.env.REACT_APP_URL+`/toTranslate`, {
           method: "POST",
           body: JSON.stringify(preTranslatedSentence),
           headers: { "Content-Type": "application/json" },

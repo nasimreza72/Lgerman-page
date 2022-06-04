@@ -4,12 +4,12 @@ import logo1 from "../src/images/logo1.png";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Routes, Route } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import Cases from "./Cases";
-import Article from "./Article";
-import Translation from "./Translation";
-import Translate from "./En-En";
+import Cases from "./Cases.jsx";
+import Article from "./Article.jsx";
+import Translation from "./Translation.jsx";
+import Translate from "./En-En.jsx";
 import ListedWord from "./ListedWord.jsx";
-import TranslateToGerman from "./De-En";
+import TranslateToGerman from "./De-En.jsx";
 import Home from "./Home";
 import Login from "./Login";
 import { useState, useEffect } from "react";
@@ -31,7 +31,7 @@ export default function App() {
   return (
     <div className="App">
       {token ? (
-        <div >
+        <div>
           <img className="background-logo" src={logo} alt="" />
           <Navbar className="navigation" expand="md">
             <Container fluid>
@@ -40,7 +40,8 @@ export default function App() {
               </NavLink>
               <Navbar.Toggle aria-controls="navbarScroll" />
               <Navbar.Collapse id="navbarScroll">
-                <Nav aria-controls="navbarScroll"
+                <Nav
+                  aria-controls="navbarScroll"
                   className="p-1 d-flex sub-nav "
                   style={{ maxHeight: "190px" }}
                   navbarScroll
@@ -51,11 +52,13 @@ export default function App() {
                   <NavLink to="/cases" element={<Cases />}>
                     Cases
                   </NavLink>
-                  <NavLink to="/translation" element={<Translation />}>Translation</NavLink>
+                  <NavLink to="/translation" element={<Translation />}>
+                    Translation
+                  </NavLink>
                   <NavLink to="/toEnglish" element={<Translate />}>
                     En-En
                   </NavLink>
-                  <NavLink to="/toGerman">De-En</NavLink>
+                  <NavLink to="/toGerman" element={<TranslateToGerman />}>De-En</NavLink>
                   <NavLink to="/listed-word" element={<ListedWord />}>
                     Your Vocabulary
                   </NavLink>

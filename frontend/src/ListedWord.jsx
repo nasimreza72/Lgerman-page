@@ -7,7 +7,7 @@ export default function ListedWord(props) {
   const [germanHideList, setGermanHideList] = useState(true);
 
   function getAllEnglishWords() {
-    fetch(process.env.REACT_APP_URL + "/toEnglish")
+    fetch(process.env.REACT_APP_URL+"/toEnglish")
       .then((response) => response.json())
       .then((result) => {
         setWordsList(result);
@@ -16,7 +16,7 @@ export default function ListedWord(props) {
   }
 
   function getAllGermanWords() {
-    fetch(process.env.REACT_APP_URL + "/toGerman")
+    fetch(process.env.REACT_APP_URL+"/toGerman")
       .then((response) => response.json())
       .then((result) => {
         setGermanWordsList(result);
@@ -24,24 +24,12 @@ export default function ListedWord(props) {
     setGermanHideList(true);
   }
 
-  // function deleteWord(id) {
-  //   fetch(process.env.REACT_APP_URL + `/deleteWord/${id}`)
-  //     .then((res) => res.json())
-  //     .then((result) => setWordsList(result));
-  // }
-
-  // function deleteGermanWord(id) {
-  //   fetch(process.env.REACT_APP_URL + `/deleteGermanWord/${id}`)
-  //     .then((res) => res.json())
-  //     .then((result) => setGermanWordsList(result));
-  // }
-
   function deleteWord(id) {
     let targetedId = {
       targetedId: id,
     };
 
-    fetch(process.env.REACT_APP_URL + `/deleteWord`, {
+    fetch(process.env.REACT_APP_URL+`/deleteWord`, {
       method: "DELETE",
       body: JSON.stringify(targetedId),
       headers: { "Content-Type": "application/json" },
@@ -55,7 +43,7 @@ export default function ListedWord(props) {
       targetedId: id,
     };
 
-    fetch(process.env.REACT_APP_URL + `/deleteGermanWord`, {
+    fetch(process.env.REACT_APP_URL+`/deleteGermanWord`, {
       method: "DELETE",
       body: JSON.stringify(targetedId),
       headers: { "Content-Type": "application/json" },
