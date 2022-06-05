@@ -251,17 +251,17 @@ app.get("/users", checkTokenMiddleware, (req, res) => {
 
 app.delete("/deleteWord", async (req, res) => {
   console.log(req.body.tId.targetedId);
-  await Word.deleteOne({ _id: req.body.tId.targetedId });
+  await Word.deleteOne({ _id: String(req.body.tId.targetedId ) });
   const newList = await Word.find();
-  res.send({words: newList});
+  res.send({"words": newList});
 });
 
 /////////// DELETE GERMAN WORD
 
 app.delete("/deleteGermanWord", async (req, res) => {
-  await GermanWords.deleteOne({ _id: req.body.tId.targetedId });
+  await GermanWords.deleteOne({ _id: String(req.body.tId.targetedId)});
   const newGermanWordList = await GermanWords.find();
-  res.send({words: newGermanWordList});
+  res.send({"words": newGermanWordList});
 });
 
 /////////// LISTENING

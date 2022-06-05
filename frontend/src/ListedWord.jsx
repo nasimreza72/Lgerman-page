@@ -26,7 +26,7 @@ export default function ListedWord(props) {
 
   function deleteWord(id) {
     let tId = {
-      targetedId: id,
+      "targetedId": id,
     };
 
     fetch(process.env.REACT_APP_URL+`/deleteWord`, {
@@ -40,7 +40,7 @@ export default function ListedWord(props) {
 
   function deleteGermanWord(id) {
     let tId = {
-      targetedId: id,
+      "targetedId": id,
     };
 
     fetch(process.env.REACT_APP_URL+`/deleteGermanWord`, {
