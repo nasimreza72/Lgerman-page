@@ -9,7 +9,7 @@ export default function Translation() {
   function submitHandler() {
     
         let preTranSentence = {
-          preTranslatedSentence: sentence,
+          "preTranslatedSentence": sentence,
         };
     
         fetch(process.env.REACT_APP_URL+`/toTranslate`, {
