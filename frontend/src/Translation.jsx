@@ -8,13 +8,13 @@ export default function Translation() {
 
   function submitHandler() {
     
-        let preTranslatedSentence = {
+        let preTranSentence = {
           preTranslatedSentence: sentence,
         };
     
         fetch(process.env.REACT_APP_URL+`/toTranslate`, {
           method: "POST",
-          body: JSON.stringify(preTranslatedSentence),
+          body: JSON.stringify({preTranSentence}),
           headers: { "Content-Type": "application/json" },
         })
           .then((res) => res.json())

@@ -25,31 +25,31 @@ export default function ListedWord(props) {
   }
 
   function deleteWord(id) {
-    let targetedId = {
+    let tId = {
       targetedId: id,
     };
 
     fetch(process.env.REACT_APP_URL+`/deleteWord`, {
       method: "DELETE",
-      body: JSON.stringify(targetedId),
+      body: JSON.stringify({tId}),
       headers: { "Content-Type": "application/json" },
     })
       .then((res) => res.json())
-      .then((result) => setWordsList(result));
+      .then((result) => setWordsList(result.words));
   }
 
   function deleteGermanWord(id) {
-    let targetedId = {
+    let tId = {
       targetedId: id,
     };
 
     fetch(process.env.REACT_APP_URL+`/deleteGermanWord`, {
       method: "DELETE",
-      body: JSON.stringify(targetedId),
+      body: JSON.stringify({tId}),
       headers: { "Content-Type": "application/json" },
     })
       .then((res) => res.json())
-      .then((result) => setGermanWordsList(result));
+      .then((result) => setGermanWordsList(result.words));
   }
 
   return (

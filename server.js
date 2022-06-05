@@ -19,7 +19,7 @@ app.use(express.json());
 //////// Translation using DeepL
 
 app.post("/toTranslate", async (req, res) => {
-  const reqBody = req.body.preTranslatedSentence;
+  const reqBody = req.body.preTranSentence.preTranslatedSentence;
 
   const authKey = "8a42700f-ef7c-f619-ed85-970e9ffd5237:fx";
   const translator = new deepl.Translator(authKey);
@@ -248,18 +248,18 @@ app.get("/users", checkTokenMiddleware, (req, res) => {
 /////////// DELETE WORD
 
 app.delete("/deleteWord", async (req, res) => {
-  console.log(req.body.targetedId);
-  await Word.deleteOne({ _id: req.body.targetedId });
+  console.log(req.body.tId.targetedId);
+  await Word.deleteOne({ _id: req.body.tId.targetedId });
   const newList = await Word.find();
-  res.send(newList);
+  res.send({words: newList});
 });
 
 /////////// DELETE GERMAN WORD
 
 app.delete("/deleteGermanWord", async (req, res) => {
-  await GermanWords.deleteOne({ _id: req.body.targetedId });
+  await GermanWords.deleteOne({ _id: req.body.tId.targetedId });
   const newGermanWordList = await GermanWords.find();
-  res.send(newGermanWordList);
+  res.send({words: newGermanWordList});
 });
 
 /////////// LISTENING
