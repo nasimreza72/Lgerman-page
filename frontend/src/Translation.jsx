@@ -28,7 +28,7 @@ export default function Translation() {
         <textarea
           ref={inputText}
           onChange={ (e) => setSentence(e.target.value)}
-          placeholder="Write your sentences here and click translate button to see your translation."
+          placeholder="Write your sentences here."
           className="textField"
         ></textarea>
       </div>

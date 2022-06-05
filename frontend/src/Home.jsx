@@ -83,10 +83,10 @@ export default function Home() {
           </ul>
         </div>
       </div>
-      <h4>Discover our Features </h4>
+      <h4 className="featureText">Discover our Features </h4>
 
       <div className="rightHomePart">
-        <Carousel variant="dark" >
+        <Carousel fade variant="dark" >
 
         <Carousel.Item>
             <img className="d-block w-100" src={loginPage} alt="Login page" />

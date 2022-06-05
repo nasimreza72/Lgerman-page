@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-size: medium;
 }
 
 .App {
@@ -53,13 +54,13 @@
 h4,
 h3 {
   color: #001824bb;
-  text-shadow: 1px 1px 0.75px rgba(0, 0, 0, 0.3);
+  text-shadow: .5px .5px 0.35px rgba(129, 129, 129, 0.3);
 }
 
 h5,
 h6 {
-  color: #9e1214a4;
-  text-shadow: 0.5px 0.5px 0.35px rgba(0, 0, 0, 0.3);
+  color: #eb0606a4;
+  text-shadow: 0.5px 0.5px 0.35px rgba(141, 141, 141, 0.3);
 }
 /*  ---------- Home && Login part ------------*/
 
@@ -69,7 +70,7 @@ h6 {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-image: url(../src/images/germanLogo.png);
   background-position: center;
   background-repeat: no-repeat;
@@ -102,7 +103,7 @@ h6 {
 
 #home {
   width: 100vw;
-  padding: 5vw 1vw;
+  padding: 3vw 1vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -112,7 +113,9 @@ h6 {
 
 
 .carousel{
-  max-width: 800px;
+  max-width: 700px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; */
 }
 
 .carouselCaption p{
@@ -133,11 +136,15 @@ h6 {
 }
 
 .drawLine{
-  width: 200px;
-  height: 10px;
-  margin: 25px 0px;
+  width: 150px;
+  height: 5px;
+  margin: 10px 0px;
   background: #e4b747;
   border-radius: 5px;
+}
+
+#home .featureText{
+  margin-bottom: 25px;
 }
 
 
@@ -378,7 +385,7 @@ img {
   padding: 5px 20px;
   margin-right: 10px;
   border: none;
-  background-color: #1b1b1b;
+  background-color: #464646;
   color: #ffffff;
   transition: 0.2s ease-in-out;
 }
@@ -466,7 +473,7 @@ img {
     padding: 7.5px 5px;
   }
   #home {
-    padding-top:100px ;
+    padding-top:50px ;
   }
 
   .login {
