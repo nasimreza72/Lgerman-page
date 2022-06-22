@@ -19,14 +19,15 @@ app.use(express.json());
 //////// Translation using DeepL
 
 app.post("/toTranslate", async (req, res) => {
-  const reqBody = String(req.body.preTranSentence.preTranslatedSentence);
+  const reqPreTranslatedSentence = String(req.body.preTranSentence.preTranslatedSentence);
+  const reqPreSelectedLanguage = String(req.body.preTranSentence.preSelectedLanguage);
 
   console.log(req.body)
 
-  const authKey = "8a42700f-ef7c-f619-ed85-970e9ffd5237:fx";
-  const translator = new deepl.Translator(authKey);
+  const authKey = process.env.DEEPL_AUTH_KEY;
+  const translator = new deepl.Translator(authKey);D
 
-  const result = await translator.translateText(reqBody, null, "de");
+  const result = await translator.translateText(reqPreTranslatedSentence, null, reqPreSelectedLanguage);
   res.send({ "response": String(result.text)});
 });
 
