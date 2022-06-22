@@ -24,10 +24,10 @@ app.post("/toTranslate", async (req, res) => {
 
   console.log(req.body)
 
-  const authKey = process.env.DEEPL_AUTH_KEY;
+  const authKey = String(process.env.DEEPL_AUTH_KEY);
   const translator = new deepl.Translator(authKey);
   const result = await translator.translateText(reqPreTranslatedSentence, null, reqPreSelectedLanguage);
-  res.send({ "response": String(result.text)});
+  res.send({result});
 });
 
 /////// API FOR ENGLISH TRANSLATION

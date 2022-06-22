@@ -20,7 +20,7 @@ export default function Translation() {
           headers: { "Content-Type": "application/json" },
         })
           .then((res) => res.json())
-          .then((result) => setTranslatedSentence(result.response));
+          .then((result) => setTranslatedSentence(result.result.text));
        }
 
 
