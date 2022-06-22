@@ -11,7 +11,7 @@ export default function Translation() {
     
         let preTranSentence = {
           "preTranslatedSentence": sentence,
-          "preSelectedLanguage": selectedLanguage,
+          "preSelectedLanguage": selectedLanguage
         };
     
         fetch(process.env.REACT_APP_URL+`/toTranslate`, {
