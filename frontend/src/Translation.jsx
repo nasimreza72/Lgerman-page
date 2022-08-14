@@ -9,10 +9,11 @@ export default function Translation() {
   const inputText = useRef();
 
   function submitHandler() {
+
     let preTranSentence = {
       preTranslatedSentence: sentence,
       preSelectedLanguage: selectedLanguage,
-    };
+    }
 
     fetch(process.env.REACT_APP_URL + `/toTranslate`, {
       method: "POST",

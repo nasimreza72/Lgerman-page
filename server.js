@@ -31,6 +31,7 @@ app.post("/toTranslate", async (req, res) => {
     preTranslatedSentence: reqPreTranslatedSentence,
   });
 
+
   if (checkList) {
     console.log('checkList from inside :>> ', checkList);
     res.send({checkList: checkList.listedSentence});
