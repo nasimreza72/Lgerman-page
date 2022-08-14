@@ -7,6 +7,7 @@ import * as dataBase from "./lib/database.js";
 import { User } from "./models/User.js";
 import Word from "./models/EnglishWords.js";
 import GermanWords from "./models/GermanWords.js";
+import ListedSentence from "./models/Translated.js";
 import { hash, compareHashes } from "./lib/crypto.js";
 import * as deepl from "deepl-node";
 
@@ -19,16 +20,45 @@ app.use(express.json());
 //////// Translation using DeepL
 
 app.post("/toTranslate", async (req, res) => {
-  const reqPreTranslatedSentence = String(req.body.preTranSentence.preTranslatedSentence);
-  const reqPreSelectedLanguage = String(req.body.preTranSentence.preSelectedLanguage);
+  const reqPreTranslatedSentence = String(
+    req.body.preTranSentence.preTranslatedSentence
+  );
+  const reqPreSelectedLanguage = String(
+    req.body.preTranSentence.preSelectedLanguage
+  );
 
-  console.log(req.body)
+  let checkList = await ListedSentence.findOne({
+    preTranslatedSentence: reqPreTranslatedSentence,
+  });
 
-  const authKey = String(process.env.DEEPL_AUTH_KEY);
-  const translator = new deepl.Translator(authKey);
-  const result = await translator.translateText(reqPreTranslatedSentence, null, reqPreSelectedLanguage);
-  res.send({result});
+
+  if (checkList) {
+    console.log('checkList from inside :>> ', checkList);
+    res.send({checkList: checkList.listedSentence});
+  } else {
+    const authKey = process.env.DEEPL_AUTH_KEY;
+    const translator = new deepl.Translator(authKey);
+    const result = await translator.translateText(
+      reqPreTranslatedSentence,
+      null,
+      reqPreSelectedLanguage
+    );
+
+    ListedSentence.create({
+      listedSentence: result.text,
+      preTranslatedSentence: reqPreTranslatedSentence,
+    });
+    let getList = await ListedSentence.find();
+    res.send({ result, getList });
+  }
 });
+
+////////  GET Deepl Searched History
+
+app.get("/getSearchedHistory", async(req, res) => {
+  const listOfHistory = await ListedSentence.find()
+  res.send(listOfHistory)
+})
 
 /////// API FOR ENGLISH TRANSLATION
 
@@ -69,6 +99,7 @@ app.get("/toEnglish/:word", async (req, res) => {
 
 app.get("/toEnglish", async (req, res) => {
   const wordList = await Word.find();
+
   res.send(wordList);
 });
 
@@ -251,17 +282,17 @@ app.get("/users", checkTokenMiddleware, (req, res) => {
 
 app.delete("/deleteWord", async (req, res) => {
   console.log(req.body.tId.targetedId);
-  await Word.deleteOne({ _id: String(req.body.tId.targetedId ) });
+  await Word.deleteOne({ _id: String(req.body.tId.targetedId) });
   const newList = await Word.find();
-  res.send({"words": newList});
+  res.send({ words: newList });
 });
 
 /////////// DELETE GERMAN WORD
 
 app.delete("/deleteGermanWord", async (req, res) => {
-  await GermanWords.deleteOne({ _id: String(req.body.tId.targetedId)});
+  await GermanWords.deleteOne({ _id: String(req.body.tId.targetedId) });
   const newGermanWordList = await GermanWords.find();
-  res.send({"words": newGermanWordList});
+  res.send({ words: newGermanWordList });
 });
 
 /////////// LISTENING

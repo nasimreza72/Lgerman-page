@@ -449,6 +449,13 @@ img {
   position: relative;
 }
 
+#translation .translateButton{
+  margin-right: 30px;
+}
+
+#translation h6{
+  color:#333333;
+}
 
 
 #translation select{
@@ -458,8 +465,20 @@ img {
   right: 0px;
   top: 0px;
   outline: none;
+  background-color: #1a79e6;
+  color: white;
+  padding: 3px;
 }
 
+
+#translation .rightSection{
+  padding: 20px 0px;
+}
+
+#translation .rightSection .showTranslatedResult{
+  height: 500px;
+  overflow: scroll;
+}
 
 
 
