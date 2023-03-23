@@ -83,13 +83,14 @@ app.get("/toEnglish/:word", async (req, res) => {
         res.send(result.data[0]);
       })
       .catch((err) => {
+        console.log("eroooorr",req.params.word)
         Word.create({
           word: req.params.word,
-          error: err,
+          error: "not found",
         });
         res.send({
           word: req.params.word,
-          error: err,
+          error: "not found",
         });
       });
   }
