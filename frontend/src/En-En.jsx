@@ -16,6 +16,7 @@ export default function Translate() {
       word.includes("!") ||
       word.includes("?") ||
       word.includes(":") ||
+      word.includes(";") ||
       word.includes("!")
         ? word.slice(0, -1)
         : word;
